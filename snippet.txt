@@ -1,0 +1,11 @@
+<model-viewer src="totalscreentime.glb" ar ar-modes="webxr scene-viewer quick-look" camera-controls tone-mapping="aces" poster="poster.webp" shadow-intensity="0.94" exposure="2" environment-image="80ff9a23-d604-4683-a94f-4987e75feeb2#.hdr" skybox-image="80ff9a23-d604-4683-a94f-4987e75feeb2#.hdr" autoplay>
+    <div class="progress-bar hide" slot="progress-bar">
+        <div class="update-bar"></div>
+    </div>
+    <button slot="ar-button" id="ar-button">
+        View in your space
+    </button>
+    <div id="ar-prompt">
+        <img src="https://modelviewer.dev/shared-assets/icons/hand.png">
+    </div>
+</model-viewer>
