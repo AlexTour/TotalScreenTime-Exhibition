@@ -22,7 +22,7 @@
     <script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer/dist/model-viewer-module.min.js"></script>
     <script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer-effects/dist/model-viewer-effects.min.js"></script>
     <!-- <model-viewer> HTML element -->
-    <model-viewer src="totalscreentimeAnim-v1.glb" camera-controls poster="poster.webp" shadow-intensity="0.94" exposure="1.5" autoplay>
+    <model-viewer src="totalscreentimeAnim-v1.glb" id="effectsViewer" camera-controls poster="poster.webp" shadow-intensity="0.94" exposure="1.5" autoplay>
       <effect-composer id="selectiveComposer" render-mode="quality">
         <outline-effect color="blue" blend-mode="skip"></outline-effect>
         <ssao-effect blend-mode="skip"></ssao-effect>
@@ -70,7 +70,7 @@
 
     <script type="module">
       const effectsViewer = document.querySelector("model-viewer#effectsViewer");
-      const effects = effectsViewer.getElementById("selectiveComposer").children; /*querySelector("effect-composer")*/
+      const effects = effectsViewer.querySelector("effect-composer").children;
       const inputs = effectsViewer.querySelectorAll("input");
 
       for (let i = 0; i < effects.length; i++) {
