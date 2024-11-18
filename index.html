@@ -47,6 +47,14 @@
         <input type="checkbox" id="pixelate">
         <label for="colorgrade">Color Grade Effect</label>
         <input type="checkbox" id="colorgrade" checked>
+        <label for="tonemapping">Tonemapping:</label>
+        <select id="tonemapping">
+          <option value="aces_filmic">Aces Filmic</option>
+          <option value="reinhard">Reinhard</option>
+          <option value="reinhard2">Reinhard2</option>
+          <option value="reinhard2_adaptive">Reinhard2 Adaptive</option>
+          <option value="optimized_cineon">Optimized Cineon</option>
+        </select>
       </div>
       <div class="progress-bar hide" slot="progress-bar">
           <div class="update-bar"></div>
@@ -76,6 +84,10 @@
       for (let i = 0; i < effects.length; i++) {
         inputs[i].addEventListener('change', (e) => effects[i].blendMode = e.target.checked ? 'default' : 'skip');
       }
+
+      const colorGradeEffect = effectsViewer.querySelector('color-grade-effect');
+      const tonemapping = effectsViewer.querySelector('#tonemapping');
+      tonemapping.addEventListener('input', (e) => colorGradeEffect.tonemapping = e.target.value);
     </script>
     
     <script src="script.js"></script>
