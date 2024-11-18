@@ -90,7 +90,7 @@
     <script type="module">
       const effectsViewer = document.querySelector("model-viewer#effectsViewer");
       const effects = effectsViewer.querySelector("effect-composer").children;
-      const inputs = effectsViewer.querySelectorAll("input");
+      const inputs = effectsViewer.querySelectorAll("input[type='checkbox']");
 
       for (let i = 0; i < effects.length; i++) {
         inputs[i].addEventListener('change', (e) => effects[i].blendMode = e.target.checked ? 'default' : 'skip');
