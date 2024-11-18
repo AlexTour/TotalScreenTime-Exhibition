@@ -61,6 +61,14 @@
           <img src="ar_hand_prompt.png">
       </div>
     </model-viewer>  
+    <script>
+      document.addEventListener('keydown', (event) => {
+        if (event.code === 'Space') {
+          const controlsDiv = document.getElementById('controls');
+          controlsDiv.style.display = controlsDiv.style.display === 'none' ? 'block' : 'none';
+        }
+      });
+    </script>
     <script type="module">
       const selectiveComposer = document.querySelector("effect-composer#selectiveComposer");
       const selectiveBloom = selectiveComposer.querySelector("selective-bloom-effect");
