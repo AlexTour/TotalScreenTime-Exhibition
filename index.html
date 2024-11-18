@@ -28,7 +28,6 @@
         <ssao-effect blend-mode="skip"></ssao-effect>
         <glitch-effect blend-mode="skip"></glitch-effect>
         <smaa-effect blend-mode="skip"></smaa-effect>
-        <selective-bloom-effect blend-mode="default" strength="5" radius="0.7" threshold="0" id="selective-bloom-effect"></selective-bloom-effect>
         <bloom-effect blend-mode="skip"></bloom-effect>
         <pixelate-effect granularity="5" blend-mode="skip"></pixelate-effect>
         <color-grade-effect blend-mode="default"></color-grade-effect>
@@ -42,8 +41,6 @@
         <input type="checkbox" id="glitch">
         <label for="smaa">SMAA Effect</label>
         <input type="checkbox" id="smaa">
-        <label for="selectivebloom">Selective Bloom Effect</label>
-        <input type="checkbox" id="selectivebloom">
         <label for="bloom">Bloom Effect</label>
         <input type="checkbox" id="bloom">
         <label for="pixelate">Pixelate Effect</label>
@@ -60,28 +57,14 @@
       <div id="ar-prompt">
           <img src="ar_hand_prompt.png">
       </div>
-    </model-viewer>  
+    </model-viewer> 
+    
     <script>
       document.addEventListener('keydown', (event) => {
         if (event.code === 'Space') {
           const controlsDiv = document.getElementById("controls");
           controlsDiv.style.display = controlsDiv.style.display === 'none' ? 'block' : 'none';
         }
-      });
-    </script>
-    <script type="module">
-      const selectiveComposer = document.querySelector("effect-composer#selectiveComposer");
-      const selectiveBloom = selectiveComposer.querySelector("selective-bloom-effect");
-
-      selectiveComposer.addEventListener('updated-selection', () => {
-        const selection = [];
-          selectiveComposer.selection.forEach((obj) => 
-          (obj.material.emissive.r > 0 
-          || obj.material.emissive.g > 0 
-          || obj.material.emissive.b > 0) &&
-            selection.push(obj)
-        );
-        selectiveBloom.selection = selection;
       });
     </script>
 
