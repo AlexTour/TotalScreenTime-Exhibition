@@ -33,7 +33,7 @@
         <pixelate-effect granularity="5" blend-mode="skip"></pixelate-effect>
         <color-grade-effect blend-mode="default"></color-grade-effect>
       </effect-composer>
-      <div class="controls">
+      <div class="controls" id="controls">
         <label for="outline">Outline Effect</label>
         <input type="checkbox" id="outline">
         <label for="ssao">SSAO Effect</label>
@@ -64,7 +64,7 @@
     <script>
       document.addEventListener('keydown', (event) => {
         if (event.code === 'Space') {
-          const controlsDiv = document.getElementById('controls');
+          const controlsDiv = document.getElementById("controls");
           controlsDiv.style.display = controlsDiv.style.display === 'none' ? 'block' : 'none';
         }
       });
