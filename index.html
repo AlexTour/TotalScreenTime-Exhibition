@@ -70,7 +70,7 @@
 
     <script type="module">
       const effectsViewer = document.querySelector("model-viewer#effectsViewer");
-      const effects = effectsViewer.querySelector("effect-composer").children;
+      const effects = effectsViewer.getElementById("selectiveComposer").children; /*querySelector("effect-composer")*/
       const inputs = effectsViewer.querySelectorAll("input");
 
       for (let i = 0; i < effects.length; i++) {
