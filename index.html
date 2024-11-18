@@ -36,6 +36,17 @@
         <label for="outline">Outline Effect</label>
         <input type="checkbox" id="outline">
         <label for="ssao">SSAO Effect</label>
+        <label for="opacity">Opacity</label>
+        <input id="opacity" type="range" min="0" max="1" step="0.01" value="1">
+        <label for="blend-mode">Blend Mode:</label>
+        <select id="blend-mode">
+          <option value="default">Default</option>
+          <option value="skip">Skip</option>
+          <option value="add">Add</option>
+          <option value="subtract">Subtract</option>
+          <option value="divide">Divide</option>
+          <option value="negation">Negation</option>
+        </select>
         <input type="checkbox" id="ssao">
         <label for="glitch">Glitch Effect</label>
         <input type="checkbox" id="glitch">
@@ -88,6 +99,13 @@
       const colorGradeEffect = effectsViewer.querySelector('color-grade-effect');
       const tonemapping = effectsViewer.querySelector('#tonemapping');
       tonemapping.addEventListener('input', (e) => colorGradeEffect.tonemapping = e.target.value);
+
+      const blendEffect = effectsViewer.querySelector('ssao-effect');
+      const opacity = effectsViewer.querySelector('#opacity');
+      const mode = effectsViewer.querySelector('#blend-mode');
+
+      opacity.addEventListener('input', (e) => blendEffect.opacity = e.target.value);
+      mode.addEventListener('change', (e) => blendEffect.blendMode = e.target.value);
     </script>
     
     <script src="script.js"></script>
