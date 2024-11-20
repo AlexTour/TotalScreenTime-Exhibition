@@ -22,7 +22,7 @@
     <script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer/dist/model-viewer-module.min.js"></script>
     <script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer-effects/dist/model-viewer-effects.min.js"></script>
     <!-- <model-viewer> HTML element -->
-    <model-viewer src="totalscreentimeAnim-v1-v1.glb" id="effectsViewer" camera-controls camera-orbit="-0.1178deg 65.00deg 4.00m" auto-rotate poster="poster.webp" shadow-intensity="0.94" field-of-view=45deg" exposure="1.5" autoplay>
+    <model-viewer src="totalscreentimeAnim-v1-v1.glb" id="effectsViewer" camera-controls camera-orbit="-0.1178deg 65.00deg 3.00m" interpolation-decay="200" auto-rotate poster="poster.webp" shadow-intensity="0.94" field-of-view=45deg" exposure="1.5" autoplay>
       <effect-composer id="selectiveComposer" render-mode="quality">
         <outline-effect color="blue" blend-mode="skip"></outline-effect>
         <ssao-effect blend-mode="skip"></ssao-effect>
@@ -91,8 +91,8 @@
     (() => {
       const modelViewer = document.querySelector("model-viewer");
       const orbitCycle = [
-        '-45deg 65deg 4m',
-        '-155.1deg 56.35deg 4m',
+        '-45deg 65deg 3m',
+        '-155.1deg 56.35deg 3m',
         modelViewer.cameraOrbit
       ];
     
@@ -100,7 +100,7 @@
         const currentOrbitIndex = orbitCycle.indexOf(modelViewer.cameraOrbit);
         modelViewer.cameraOrbit =
             orbitCycle[(currentOrbitIndex + 1) % orbitCycle.length];
-      }, 3000);
+      }, 10000);
     })();
 </script>
 
