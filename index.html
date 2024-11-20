@@ -85,54 +85,24 @@
           controlsDiv.style.display = controlsDiv.style.display === 'none' ? 'flex' : 'none';
         }
       });
-
-      document.addEventListener("DOMContentLoaded", () => {
-  const modelViewer = document.querySelector("model-viewer");
-  if (!modelViewer) {
-    console.error("Model Viewer not found in the DOM!");
-    return;
-  }
-
-  const zoomSpeed = 0.5; // Adjust zoom speed
-  const minFov = 15; // Minimum FOV
-  const maxFov = 75; // Maximum FOV
-  let currentFov = parseFloat(modelViewer.getAttribute("field-of-view")) || 45;
-  let zooming = false;
-
-  const zoom = (direction) => {
-    if (zooming) return; // Prevent multiple zooms at once
-    zooming = true;
-    const targetFov = direction === "in" ? Math.max(minFov, currentFov - 10) : Math.min(maxFov, currentFov + 10);
-    const step = direction === "in" ? -zoomSpeed : zoomSpeed;
-
-    const animateZoom = () => {
-      currentFov = parseFloat(modelViewer.getAttribute("field-of-view")) || 45;
-      if ((step < 0 && currentFov > targetFov) || (step > 0 && currentFov < targetFov)) {
-        currentFov += step;
-        modelViewer.setAttribute("field-of-view", currentFov.toFixed(1));
-        requestAnimationFrame(animateZoom);
-      } else {
-        modelViewer.setAttribute("field-of-view", targetFov.toFixed(1));
-        zooming = false;
-        console.log(`Zoom completed. Current FOV: ${targetFov}`);
-      }
-    };
-
-    animateZoom();
-  };
-
-  document.addEventListener("keydown", (event) => {
-    if (event.code === "KeyR") {
-      console.log("Zooming in...");
-      zoom("in");
-    }
-    if (event.code === "KeyF") {
-      console.log("Zooming out...");
-      zoom("out");
-    }
-  });
-});
     </script>
+
+    <script>
+    (() => {
+      const modelViewer = document.querySelector('#orbit-demo');
+      const orbitCycle = [
+        '45deg 55deg 4m',
+        '-00deg 00deg 2m',
+        modelViewer.cameraOrbit
+      ];
+    
+      setInterval(() => {
+        const currentOrbitIndex = orbitCycle.indexOf(modelViewer.cameraOrbit);
+        modelViewer.cameraOrbit =
+            orbitCycle[(currentOrbitIndex + 1) % orbitCycle.length];
+      }, 3000);
+    })();
+</script>
 
     <script type="module">
       const effectsViewer = document.querySelector("model-viewer#effectsViewer");
