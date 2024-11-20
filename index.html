@@ -22,7 +22,7 @@
     <script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer/dist/model-viewer-module.min.js"></script>
     <script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer-effects/dist/model-viewer-effects.min.js"></script>
     <!-- <model-viewer> HTML element -->
-    <model-viewer src="totalscreentimeAnim-v1-v1.glb" id="effectsViewer" camera-controls auto-rotate poster="poster.webp" shadow-intensity="0.94" exposure="1.5" autoplay>
+    <model-viewer src="totalscreentimeAnim-v1-v1.glb" id="effectsViewer" camera-controls auto-rotate poster="poster.webp" shadow-intensity="0.94" field-of-view=45deg" exposure="1.5" autoplay>
       <effect-composer id="selectiveComposer" render-mode="quality">
         <outline-effect color="blue" blend-mode="skip"></outline-effect>
         <ssao-effect blend-mode="skip"></ssao-effect>
@@ -85,6 +85,47 @@
           controlsDiv.style.display = controlsDiv.style.display === 'none' ? 'flex' : 'none';
         }
       });
+
+      document.addEventListener("DOMContentLoaded", () => {
+  const modelViewer = document.querySelector("model-viewer");
+  if (!modelViewer) {
+    console.error("Model Viewer not found!");
+    return;
+  }
+
+  let zooming = false;
+  const zoomSpeed = 0.5; // Adjust the zoom speed
+  const minFov = 10; // Minimum FOV to prevent excessive zooming
+
+  const startZoom = () => {
+    zooming = true;
+    const zoom = () => {
+      if (zooming) {
+        const currentFov = parseFloat(modelViewer.getAttribute("field-of-view")) || 45;
+        if (currentFov > minFov) {
+          modelViewer.setAttribute("field-of-view", (currentFov - zoomSpeed).toFixed(1));
+          requestAnimationFrame(zoom);
+        } else {
+          zooming = false; // Stop zooming if FOV reaches the minimum
+        }
+      }
+    };
+    zoom();
+  };
+
+  const stopZoom = () => {
+    zooming = false;
+  };
+
+  document.addEventListener("keydown", (event) => {
+    if (event.code === "KeyR") {
+      if (!zooming) startZoom();
+    }
+    if (event.code === "KeyS") {
+      stopZoom(); // Press "S" to stop zooming
+    }
+  });
+});
     </script>
 
     <script type="module">
