@@ -87,23 +87,6 @@
       });
     </script>
 
-    <script>
-    (() => {
-      const modelViewer = document.querySelector("model-viewer");
-      const orbitCycle = [
-        '-45deg 65deg 2m',
-        '-155.1deg 56.35deg 2m',
-        modelViewer.cameraOrbit
-      ];
-    
-      setInterval(() => {
-        const currentOrbitIndex = orbitCycle.indexOf(modelViewer.cameraOrbit);
-        modelViewer.cameraOrbit =
-            orbitCycle[(currentOrbitIndex + 1) % orbitCycle.length];
-      }, 8500);
-    })();
-</script>
-
     <script type="module">
       const effectsViewer = document.querySelector("model-viewer#effectsViewer");
       const effects = effectsViewer.querySelector("effect-composer").children;
